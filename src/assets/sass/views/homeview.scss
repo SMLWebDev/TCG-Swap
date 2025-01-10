@@ -1,0 +1,66 @@
+@use '../mixins/mixins.scss';
+
+// @mixin background-box($radius, $padd) {
+//   background-color: gray;
+//   border-radius: $radius;
+//   padding: $padd;
+// }
+
+.hero {
+  height: 514px;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.hero-image {
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  max-height: 514px;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+}
+
+.hero-content {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: inherit;
+  gap: 0em;
+  color: #fff;
+
+  // .hero-container {
+  //   @include background-box(2em, 2em);
+  // }
+
+
+  h4 {
+    text-transform: uppercase;
+    font-size: 1.4em;
+    line-height: 1.5em;
+  }
+
+  h1 {
+    text-transform: uppercase;
+    font-size: 6em;
+    line-height: 1.4em;
+  }
+
+  p {
+    font-size: 1.6em;
+    line-height: 1.8em;
+  }
+
+  h4, h1, p{
+    display: flex;
+    justify-content: center;
+    letter-spacing: 10%;
+    margin: 0;
+  }
+}

@@ -1,0 +1,27 @@
+header {
+    z-index: 5;
+    position: relative;
+  }
+  
+  .p-menubar {
+    background: transparent !important;
+    justify-content: space-between;
+
+    ul {
+      gap: 5em;
+
+      li {
+        text-transform: uppercase;
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: #fff;
+
+        &:hover {
+          color: gray;
+        }
+      }
+    }
+
+    
+  }
+

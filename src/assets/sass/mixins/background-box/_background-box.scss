@@ -1,0 +1,5 @@
+@mixin background-box($radius, $padd) {
+    background-color: $color__grey;
+    border-radius: $radius;
+    padding: $padd;
+}
