@@ -1,4 +1,5 @@
 <script setup>
+import tcgSelector from '../components/tcgSelector.vue';
 </script>
 
 <template>
@@ -15,6 +16,12 @@
           <p>The best place to make your trades</p>
         </div>
       </div>
+    </div>
+
+    <div class="selection container">
+      <h2>Pick your TCG below</h2>
+
+      <tcgSelector />
     </div>
   </main>
 </template>

@@ -1,0 +1,15 @@
+.selections {   
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2em;
+    justify-content: space-around;
+
+    .card {
+        width: 20em;
+        transition: transform .2s;
+
+        &:hover {
+            transform: scale(1.3);
+        }
+    }
+}

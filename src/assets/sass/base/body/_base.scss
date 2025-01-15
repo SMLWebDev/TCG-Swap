@@ -14,12 +14,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.container {
-  max-width: 1440px;
-  width: 100%;
-  margin: 0 auto;
-}
-
 header {
   z-index: 5;
   position: relative;
@@ -32,4 +26,32 @@ header {
 img {
   height: 100%;
   width: 100%;
+}
+
+.container {
+  margin: 0 30px;
+}
+
+@media screen and (min-width: 1440px) {
+  .container {
+    margin: 0 250px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .container {
+    margin: 0 200px;
+  }
+}
+
+@media screen and (min-width: 1080px) {
+  .container {
+    margin: 0 150px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    margin: 0 50px;
+  }
 }

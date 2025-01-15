@@ -1,12 +1,11 @@
 <template>
-   <div class="container">
-      <h1>Trader</h1>
+   <div>
 
-      
    </div>
 </template>
 
 <script>
+
 </script>
 
 <style>
