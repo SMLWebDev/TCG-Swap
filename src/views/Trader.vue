@@ -1,28 +1,27 @@
 <script setup>
 import SelectPokemon from '@/components/SelectPokemon.vue';
+import SelectMTG from '@/components/SelectMTG.vue';
+import SelectYuGiOh from '@/components/SelectYuGiOh.vue';
 import { ref } from 'vue';
+import { Select } from 'primevue';
 
-const notSelected = ref(true);
-const selectedOption = null;
+const selectedTCG = ref('')
 
-const options = [
+const tcgoptions = ref([
    {
-      label: "Pokemon",
+      name: "Pokemon",
       value: "Pokemon"
    },
    {
-      label: "MTG",
+      name: "MTG",
       value: "MTG"
    },
    {
-      label: "Yu-Gi-Oh",
+      name: "Yu-Gi-Oh",
       value: "Yu-Gi-Oh"
    }
-];
+]);
 
-function handleOptionChange() {
-   console.log(this.selectedOption)
-}
 </script>
 
 <template>
@@ -39,18 +38,25 @@ function handleOptionChange() {
       </div>
 
       <div class="trader">
-         <h4>Your Card</h4>
-
-         <h5>Select TCG</h5>
-         <select v-model="selectedOption" @change="handleOptionChange" name="select" id="select">
-            <option v-for="option in options" :value="option.value">{{ option.label }}</option>
-         </select>
+         <div class="select-tcg">
+            <Select v-model="selectedTCG" :options="tcgoptions" optionLabel="name" placeholder="Select TCG..." />
+         </div>
          
-         <div v-if="pokemon"></div>
-         <div v-if="notSelected" class="card-selector">Select</div>
-         <div v-else class="card-selector">Already Selected</div>
-         <button @click="notSelected = !notSelected">Select Card</button>
-         <SelectPokemon />
+         <div v-if="selectedTCG.name === 'Pokemon'">
+            <SelectPokemon
+               :selectedTCG="selectedTCG"
+            />
+         </div>
+         <div v-else-if="selectedTCG.name === 'MTG'">
+            <SelectMTG
+               :selectedTCG="selectedTCG"
+            />
+         </div>
+         <div v-else-if="selectedTCG.name === 'Yu-Gi-Oh'">
+            <SelectYuGiOh
+               :selectedTCG="selectedTCG"
+            />
+         </div>
       </div>
    </div>
 </template>

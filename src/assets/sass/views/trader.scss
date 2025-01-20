@@ -38,11 +38,33 @@
         width: 50%;
         display: flex;
         justify-content: center;
+        margin: 0 auto;
     }
 }
 
-.card-selector {
-    width: 200px;
-    height: 250px;
-    background-color: beige;
+.trader {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 5em;
+
+    .select-tcg {
+        width: 10em;
+        background: beige;
+        border-radius: 2em;
+        display: flex;
+        flex-direction: row;
+        height: 25px;
+        margin-bottom: 2em;
+        align-items: center;
+        justify-content: center;
+      }
+    
+    .card-selector {
+        width: 200px;
+        height: 250px;
+        background-color: beige;
+    }
 }
+

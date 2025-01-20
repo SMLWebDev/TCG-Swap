@@ -6,6 +6,6 @@ defineProps(['selectedTCG']);
     <h1>{{ selectedTCG.name }}</h1>
 </template>
 
-<style>
-
+<style lang="scss">
+    
 </style>
