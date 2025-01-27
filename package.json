@@ -10,8 +10,11 @@
   },
   "dependencies": {
     "@primevue/themes": "^4.2.4",
+    "@vueuse/core": "^12.5.0",
     "axios": "^1.7.9",
+    "json-server": "^1.0.0-beta.3",
     "modern-normalize": "^3.0.1",
+    "pinia": "^2.3.1",
     "primevue": "^4.2.4",
     "vue": "^3.5.13",
     "vue-router": "^4.4.5"

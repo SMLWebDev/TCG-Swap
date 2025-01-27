@@ -1,4 +1,4 @@
-<script setup>
++<script setup>
 import tcgSelector from '../components/tcgSelector.vue';
 </script>
 

@@ -1,4 +1,4 @@
 export const ENDPOINT = {
     getAllCards: '/cards',
-    singleCard: '/cards/${id}'
+    singleCard: '/cards?q=name:'
 }

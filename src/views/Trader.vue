@@ -1,9 +1,10 @@
 <script setup>
-import SelectPokemon from '@/components/SelectPokemon.vue';
-import SelectMTG from '@/components/SelectMTG.vue';
-import SelectYuGiOh from '@/components/SelectYuGiOh.vue';
-import { ref } from 'vue';
+import SelectPokemon from '@/components/trader/SelectPokemon.vue';
+import SelectMTG from '@/components/trader/SelectMTG.vue';
+import SelectYuGiOh from '@/components/trader/SelectYuGiOh.vue';
+import {  ref } from 'vue';
 import { Select } from 'primevue';
+
 
 const selectedTCG = ref('')
 
@@ -36,23 +37,27 @@ const tcgoptions = ref([
          <p>Use the space below to add the card you wish to trade for, while adding the card you want on the right.
             The light in between the cards show if the trade is good (green), ok (orange, normally because you are giving away more cards than receiving) or bad (red).</p>
       </div>
+      
+      <ul>
+         <li v-for="card in filteredCard" :key="card.id">{{ card.name }}</li>
+      </ul>
 
       <div class="trader">
          <div class="select-tcg">
             <Select v-model="selectedTCG" :options="tcgoptions" optionLabel="name" placeholder="Select TCG..." />
          </div>
          
-         <div v-if="selectedTCG.name === 'Pokemon'">
+         <div v-if="selectedTCG.name === 'Pokemon'" class="container">
             <SelectPokemon
                :selectedTCG="selectedTCG"
             />
          </div>
-         <div v-else-if="selectedTCG.name === 'MTG'">
+         <div v-else-if="selectedTCG.name === 'MTG'" class="container">
             <SelectMTG
                :selectedTCG="selectedTCG"
             />
          </div>
-         <div v-else-if="selectedTCG.name === 'Yu-Gi-Oh'">
+         <div v-else-if="selectedTCG.name === 'Yu-Gi-Oh'" class="container">
             <SelectYuGiOh
                :selectedTCG="selectedTCG"
             />
