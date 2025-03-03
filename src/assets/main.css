@@ -1,0 +1,17 @@
+@import 'tailwindcss';
+@import 'primeicons/primeicons.css';
+
+.p-menubar-root-list {
+    width: 100%;
+    justify-content: end;
+}
+
+.p-menubar-button {
+    width: 100% !important;
+    justify-content: end !important;
+}
+
+.p-menubar-button svg {
+    width: 1.5rem;
+    height: 1.5rem;
+}
