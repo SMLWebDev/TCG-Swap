@@ -2,6 +2,12 @@
   import { ref } from 'vue'
   import { useRouter } from 'vue-router'
 
+  import {NavigationMenu, NavigationMenuLink, NavigationMenuList} from "@/components/ui/navigation-menu/index.js";
+  import {Sheet, SheetContent, SheetTrigger} from "@/components/ui/sheet/index.js";
+
+  import { Menu } from 'lucide-vue-next'
+
+  const isOpen = ref(false)
   const router = useRouter()
 
   const items = ref([
@@ -21,21 +27,45 @@
 </script>
 
 <template>
-  <div class="m-2">
-    <Menubar :model="items" class="container mx-auto">
-        <template #start>
-          <img src="../assets/tcg-swap-logo.svg" alt="TCG Swap Logo">
-        </template>
+  <header class="h-28 container mx-auto bg-[222.2 84% 4.9%] border-b bg-muted/40 flex justify-between px-6 rounded-lg shadow-sm shadow-slate-500 items-center">
+    <div class="w-full flex justify-between">
+      <RouterLink to="/">
+        <img src="https://ttbtdmddwvcodsdbpezm.supabase.co/storage/v1/object/sign/images/tcg-swap-logo.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZXMvdGNnLXN3YXAtbG9nby5zdmciLCJpYXQiOjE3NDExMDEzMzYsImV4cCI6MjA1NjQ2MTMzNn0.4QbXDUoZ39ODwn2j-sWqwVD9A2agU9ws8pjyeLh9TZY" alt="TCG Logo">
+      </RouterLink>
 
-        <template #item="{ item, props }">
-            <router-link v-if="item.route" v-slot="{ href, navigate }" :to="item.route" custom>
-              <a class="text-xl" v-ripple :href="href" v-bind="props.action" @click="navigate">
-                {{ item.label }}
-              </a>
-            </router-link>
-        </template>
-    </Menubar>
-  </div>
+      <!-- Mobile Navigation -->
+      <div class="flex md:hidden">
+        <Sheet v-model:open="isOpen">
+          <SheetTrigger @click="isOpen"><Menu :size="32" /></SheetTrigger>
+          <SheetContent side="right">
+            <ul>
+              <li v-for="item in items" :key="item.label">
+                <RouterLink :to="item.route" @click="isOpen=false">
+                  {{ item.label }}
+                </RouterLink>
+              </li>
+            </ul>
+          </SheetContent>
+        </Sheet>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <NavigationMenu class="hidden md:flex">
+        <NavigationMenuList>
+          <ul class="flex items-center justify-between gap-10 text-white text-xl">
+            <li v-for="item in items" :key="item.label">
+              <NavigationMenuLink>
+                <RouterLink :to="item.route">
+                  {{ item.label }}
+                </RouterLink>
+              </NavigationMenuLink>
+            </li>
+          </ul>
+        </NavigationMenuList>
+      </NavigationMenu>
+    </div>
+
+  </header>
 </template>
 
 <style scoped>

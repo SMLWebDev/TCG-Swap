@@ -1,0 +1,58 @@
+Stack:
+	> Vue3 for Frontend
+	> Supabase for Backend and Auth
+	> Pinia for State Management
+	> ShadCN-vue components
+	> TailwindCSS for styling
+
+
+Pages:
+	> Home Page - TCG Selector
+	> The Trader
+	> Login/Register form
+	> My Account
+	    > Collections
+	    > Wishlist
+	    > Trades
+	> Forgotten Password
+	> 404 Not Found
+
+Components:
+	> Navbar
+	> Footer
+	> TCG Selector
+	> Trader
+	> Card Selections
+	> Button
+	> Login Form
+	> Register Form
+	> Account Components
+	    > Collections
+	    > Wishlist
+	    > Trades
+
+Pinia: 
+	> State management to be used for API calls.
+		> Pokemon State
+		> MTG State
+		> Yu-Gi-Oh State
+
+
+Database:
+    Users:
+        > First Name
+        > Last Name
+        > Username
+        > Email
+        > Password
+        > Avatar
+
+
+{
+      path: '/about',
+      name: 'about',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import('../views/AboutView.vue'),
+    },
