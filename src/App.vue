@@ -6,9 +6,7 @@ import DarkModeSwitch from "@/components/DarkModeSwitch.vue";
 </script>
 
 <template>
-  <header>
-    <Navbar />
-  </header>
+  <Navbar />
   <DarkModeSwitch />
 
   <RouterView />

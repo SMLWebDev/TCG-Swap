@@ -4,6 +4,15 @@
 
 /* ... */
 
+@font-face {
+  font-family: 'roboto-serif';
+  src: url('@/assets/fonts/RobotoSerif-VariableFont_GRAD,opsz,wdth,wght.ttf');
+}
+
+body {
+  font-family: 'roboto-serif';
+}
+
 @layer base {
   :root {
 
@@ -115,5 +124,11 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .logo-container {
+    @apply w-96 h-auto hover:scale-150
   }
 }

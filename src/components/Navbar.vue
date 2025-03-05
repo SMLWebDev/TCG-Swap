@@ -27,13 +27,14 @@
 </script>
 
 <template>
-  <header class="h-28 container mx-auto bg-[222.2 84% 4.9%] border-b bg-muted/40 flex justify-between px-6 rounded-lg shadow-sm shadow-slate-500 items-center">
+  <header class="h-28 container mx-auto bg-[222.2 84% 4.9%] border-b bg-muted/40 flex justify-between px-6 my-6 rounded-lg shadow-sm shadow-slate-500 items-center">
     <div class="w-full flex justify-between">
       <RouterLink to="/">
         <img src="https://ttbtdmddwvcodsdbpezm.supabase.co/storage/v1/object/sign/images/tcg-swap-logo.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZXMvdGNnLXN3YXAtbG9nby5zdmciLCJpYXQiOjE3NDExMDEzMzYsImV4cCI6MjA1NjQ2MTMzNn0.4QbXDUoZ39ODwn2j-sWqwVD9A2agU9ws8pjyeLh9TZY" alt="TCG Logo">
       </RouterLink>
 
       <!-- Mobile Navigation -->
+
       <div class="flex md:hidden">
         <Sheet v-model:open="isOpen">
           <SheetTrigger @click="isOpen"><Menu :size="32" /></SheetTrigger>
@@ -52,7 +53,7 @@
       <!-- Desktop Navigation -->
       <NavigationMenu class="hidden md:flex">
         <NavigationMenuList>
-          <ul class="flex items-center justify-between gap-10 text-white text-xl">
+          <ul class="flex items-center justify-between gap-10 text-xl uppercase">
             <li v-for="item in items" :key="item.label">
               <NavigationMenuLink>
                 <RouterLink :to="item.route">

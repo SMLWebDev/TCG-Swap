@@ -1,20 +1,18 @@
 <script setup>
-import {ref} from "vue";
+import { ref } from "vue";
+import { Switch } from "@/components/ui/switch/index.js";
 
-const checked = ref(false)
+const isDark = ref(true)
 
 function toggleDarkMode() {
-  document.documentElement.classList.toggle('my-app-dark')
+  document.documentElement.classList.toggle('dark')
 }
 </script>
 
 <template>
   <div class="card flex justify-end container mx-auto">
     <p class="text-xs content-center pr-2">Toggle Dark Mode</p>
-    <ToggleSwitch v-model="checked" @click="toggleDarkMode()">
-      <template #handle="{ checked }">
-        <i class="['!text-xs pi', { 'pi-sun': checked, 'pi-moon': checked }] " />
-      </template>
-    </ToggleSwitch>
+    <Switch :model-value="isDark" @update:model-value="toggleDarkMode">
+    </Switch>
   </div>
 </template>
