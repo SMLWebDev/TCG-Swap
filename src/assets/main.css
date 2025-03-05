@@ -131,4 +131,12 @@ body {
   .logo-container {
     @apply w-96 h-auto hover:scale-150
   }
+
+  input {
+    @apply mb-3 text-black p-1
+  }
+
+  label {
+    @apply dark:text-white text-black
+  }
 }
