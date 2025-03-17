@@ -1,46 +1,37 @@
-<script setup>
-import { ref } from 'vue'
-import useAuthUser from '@/composable/AuthUser.js'
-import { useRouter } from "vue-router";
-import {Button} from "@/components/ui/button/index.js";
+<script setup lang="ts">
+  import { ref } from 'vue'
+  import { useAuth } from "@/composable/AuthUser.ts";
 
-const router = useRouter()
-const { login, loginWithSocialProvider } = useAuthUser()
+  const { login } = useAuth()
+  const email = ref('')
+  const password = ref('')
+  const errorMessage = ref('')
 
-const form = ref({
-  email: "",
-  password: "",
-})
+  const handleLogin = async () => {
+    const { error } = await login(
+        email.value,
+        password.value
+    )
 
-const handleLogin = async (provider) => {
-  try {
-    provider ? await loginWithSocialProvider(provider) : await login(form.value)
-    await router.push({ name: "Me" })
-  } catch (error) {
-    alert(error.message)
+    if (error) {
+      errorMessage.value = error
+    } else {
+      window.location.href = '/profile'
+    }
   }
-}
 </script>
 
 <template>
-  <form class="max-w-2xl m-auto flex flex-col p-10 rounded-lg" @submit.prevent="handleLogin">
-    <h1 class="text-4xl underline uppercase font-bold text-center mb-5 dark:text-white text-black">Login</h1>
-    <label for="email">Email:</label>
-    <input v-model="form.email" type="email" id="email" name="email" required />
+  <div class="form flex flex-col">
+    <h1>Login</h1>
+    <label for="email">Email</label>
+    <input v-model="email" type="email" placeholder="Enter Email" />
 
-    <label for="password">Password:</label>
-    <input v-model="form.password" type="password" name="password" id="password" required />
+    <label for="password">Password</label>
+    <input v-model="password" type="password" placeholder="Enter Password" />
 
-    <Button type="submit">Login</Button>
+    <button @click="handleLogin">Login</button>
 
-    <RouterLink to="/forgotPassword">Forgot Password</RouterLink>
-  </form>
-
-  <div class="mt-5">
-    <a @click.prevent="handleLogin('github')">Github</a>
+    <p v-if="errorMessage">{{ errorMessage }}</p>
   </div>
 </template>
-
-<style scoped>
-
-</style>

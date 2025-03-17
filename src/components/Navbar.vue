@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
   import { ref } from 'vue'
   import { useRouter } from 'vue-router'
 
@@ -30,7 +30,7 @@
   <header class="h-28 container mx-auto bg-[222.2 84% 4.9%] border-b bg-muted/40 flex justify-between px-6 my-6 rounded-lg shadow-sm shadow-slate-500 items-center">
     <div class="w-full flex justify-between">
       <RouterLink to="/">
-        <img src="https://ttbtdmddwvcodsdbpezm.supabase.co/storage/v1/object/sign/images/tcg-swap-logo.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZXMvdGNnLXN3YXAtbG9nby5zdmciLCJpYXQiOjE3NDExMDEzMzYsImV4cCI6MjA1NjQ2MTMzNn0.4QbXDUoZ39ODwn2j-sWqwVD9A2agU9ws8pjyeLh9TZY" alt="TCG Logo">
+        <img src="https://res.cloudinary.com/sml-web-dev/image/upload/v1733502619/tcg-swap-logo.svg" alt="TCG Logo">
       </RouterLink>
 
       <!-- Mobile Navigation -->

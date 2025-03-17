@@ -59,3 +59,55 @@ Database:
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/AboutView.vue'),
     },
+
+
+
+    <script setup lang="ts">
+    import { ref } from 'vue'
+    import useAuthUser from '@/composable/AuthUser.ts'
+    import { useRouter } from "vue-router";
+
+    import {Button} from '@/components/ui/button/index.ts';
+
+    const router = useRouter();
+    const { signUp } = useAuthUser();
+
+    const form = ref({
+      name: "",
+      email: "",
+      password: "",
+    })
+
+    const handleSignup = async () => {
+      try {
+        await signUp(form.value);
+
+        await router.push({
+          name: "EmailConfirmation",
+          query: {email: form.value.email},
+        });
+      } catch (error) {
+        alert(error.message);
+      }
+    }
+
+    </script>
+
+    <template>
+      <form class="max-w-2xl m-auto flex flex-col p-10 rounded-lg" @submit.prevent="handleSignup">
+        <h1 class="text-4xl underline uppercase font-bold text-center mb-5 dark:text-white text-black">Register</h1>
+        <label>Name:</label>
+        <input v-model="form.name" type="text">
+
+        <label>Email:</label>
+        <input v-model="form.email" type="email">
+
+        <label>Password:</label>
+        <input v-model="form.password" type="password">
+        <Button type="submit" class="mt-5 hover:bg-blue-950">Register</Button>
+      </form>
+    </template>
+
+    <style scoped>
+
+    </style>

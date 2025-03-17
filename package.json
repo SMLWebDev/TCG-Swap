@@ -7,28 +7,47 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
+    "supabase:init": "supbase init",
+    "supabase:login": "supabase login",
+    "supabase:link": "supabase link --project-ref ttbtdmddwvcodsdbpezm",
+    "db:migrate:new": "supabase migration new",
+    "db:reset": "supabase db reset --linked",
+    "db:seed": "node --env-file=.env database/seed.js",
+    "supabase:types": "npx supabase gen types typescript --project-id ttbtdmddwvcodsdbpezm --schema public > database.types.ts",
     "shadcn:component": "bun x --bun shadcn-vue@latest add"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.49.1",
+    "@vee-validate/zod": "^4.15.0",
+    "@vueuse/core": "^12.8.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "eslint-plugin-vue": "^10.0.0",
     "lucide-vue-next": "^0.477.0",
     "normalize.css": "^8.0.1",
     "pinia": "^3.0.1",
     "reka-ui": "^2.0.2",
+    "supabase": "^2.15.8",
     "tailwind-merge": "^3.0.2",
     "tailwindcss-animate": "^1.0.7",
+    "typescript": "^5.8.2",
+    "vee-validate": "^4.15.0",
     "vue": "^3.5.13",
-    "vue-router": "^4.5.0"
+    "vue-router": "^4.5.0",
+    "zod": "^3.24.2"
   },
   "devDependencies": {
+    "@tsconfig/node22": "^22.0.0",
     "@types/node": "^22.13.9",
     "@vitejs/plugin-vue": "^5.2.1",
+    "@vue/eslint-config-prettier": "^10.2.0",
+    "@vue/eslint-config-typescript": "^14.5.0",
+    "@vue/tsconfig": "^0.7.0",
     "autoprefixer": "^10.4.20",
     "tailwindcss": "3",
     "unplugin-vue-components": "^28.4.1",
     "vite": "^6.1.0",
-    "vite-plugin-vue-devtools": "^7.7.2"
+    "vite-plugin-vue-devtools": "^7.7.2",
+    "vue-tsc": "^2.2.8"
   }
 }

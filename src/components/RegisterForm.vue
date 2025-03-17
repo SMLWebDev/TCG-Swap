@@ -1,49 +1,47 @@
-<script setup>
-import { ref } from 'vue'
-import useAuthUser from '@/composable/AuthUser.js'
-import { useRouter } from "vue-router";
+<script setup lang="ts">
+  import { ref } from 'vue'
+  import { useAuth } from '@/composable/AuthUser.ts'
 
-import {Button} from '@/components/ui/button/index.js';
+  const { register } = useAuth()
+  const name = ref('')
+  const username = ref('')
+  const email = ref('')
+  const password = ref('')
+  const errorMessage = ref('')
 
-const router = useRouter();
-const { register } = useAuthUser();
+  const handleRegister = async () => {
+    const { error } = await register(
+        name.value,
+        username.value,
+        email.value,
+        password.value,
+    )
 
-const form = ref({
-  name: "",
-  email: "",
-  password: "",
-})
-
-const handleSubmit = async () => {
-  try {
-    await register(form.value);
-
-    await router.push({
-      name: "EmailConfirmation",
-      query: {email: form.value.email},
-    });
-  } catch (error) {
-    alert(error.message);
+    if (error) {
+      errorMessage.value = error
+    } else {
+      window.location.href = '/profile'
+    }
   }
-}
-
 </script>
 
 <template>
-  <form class="max-w-2xl m-auto flex flex-col p-10 rounded-lg" @submit.prevent="handleSubmit">
-    <h1 class="text-4xl underline uppercase font-bold text-center mb-5 dark:text-white text-black">Register</h1>
-    <label>Name:</label>
-    <input v-model="form.name" type="text">
+  <div class="flex flex-col">
+    <h1>Register</h1>
+    <label for="name">Name</label>
+    <input v-model="name" type="email" placeholder="Enter name" required />
 
-    <label>Email:</label>
-    <input v-model="form.email" type="email">
+    <label for="username">Username</label>
+    <input v-model="username" type="email" placeholder="Enter username" required />
 
-    <label>Password:</label>
-    <input v-mode="form.password" type="password">
-    <Button type="submit" class="mt-5 hover:bg-blue-950">Register</Button>
-  </form>
+    <label for="email">Email</label>
+    <input v-model="email" type="email" placeholder="Enter email" required />
+
+    <label for="password">Password</label>
+    <input v-model="password" type="password" placeholder="Enter password" required />
+
+    <button @click="handleRegister">Register</button>
+
+    <p v-if="errorMessage">{{ errorMessage }}</p>
+  </div>
 </template>
-
-<style scoped>
-
-</style>

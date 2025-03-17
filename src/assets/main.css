@@ -116,9 +116,7 @@ body {
 
     --chart-5: 340 75% 55%
   }
-}
 
-@layer base {
   * {
     @apply border-border;
   }
@@ -133,10 +131,34 @@ body {
   }
 
   input {
-    @apply mb-3 text-black p-1
+    @apply mb-3 text-black dark:text-white p-1 bg-blue-950 !important
+  }
+
+  .border-input {
+    @apply border-2 border-blue-600 !important
   }
 
   label {
-    @apply dark:text-white text-black
+    @apply text-black dark:text-white
+  }
+
+  form {
+    @apply max-w-2xl m-auto flex flex-col p-10 rounded-lg gap-5 bg-gray-400/75
+  }
+
+  .profile-screen {
+    @apply container mx-auto flex xl:flex-row flex-col gap-10 border border-gray-400 rounded p-6 my-10
+  }
+
+  .profile__details {
+    @apply flex flex-col gap-5 justify-between w-[75%]
+  }
+
+  .sidebar {
+    @apply flex xl:flex-col xl:flex-nowrap flex-row flex-wrap gap-2 xl:w-[25%] w-full xl:justify-between justify-around
+  }
+
+  .sidebar__button {
+    @apply h-14 text-2xl font-thin uppercase
   }
 }
