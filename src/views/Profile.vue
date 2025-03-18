@@ -2,7 +2,6 @@
 import { ref } from 'vue';
 
 import userDetails from '@/components/account/UserDetails.vue'
-import updateUserInformation from "@/components/account/UpdateUserInformation.vue";
 import userWishlist from "@/components/account/UserWishlist.vue";
 import userCollection from "@/components/account/UserCollection.vue";
 import userTrades from "@/components/account/UserTrades.vue";
@@ -25,8 +24,6 @@ const showdetails = ref('accountDetails');
     </div>
 
     <userDetails v-if="showdetails == 'accountDetails'" />
-
-    <updateUserInformation v-else-if="showdetails == 'userInformation'" />
 
     <userWishlist v-else-if="showdetails == 'wishlist'" />
 

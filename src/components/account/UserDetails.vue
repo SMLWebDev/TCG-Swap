@@ -2,9 +2,11 @@
 import { ref, onMounted } from 'vue'
 import { useAuth } from "@/composable/AuthUser.ts";
 import Button from "@/components/ui/button/Button.vue";
+import UploadAvatar from "@/components/account/UploadAvatar.vue";
 
-const { user, fetchUser, logout } = useAuth()
+const { user, fetchUser, logout, updateProfile } = useAuth()
 const message = ref('')
+const avatar_url = ref('')
 
 onMounted(async () => {
   await fetchUser()
@@ -13,7 +15,7 @@ onMounted(async () => {
 
 <template>
   <div class="profile__details">
-    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0ibHVjaWRlIGx1Y2lkZS11c2VyLXJvdW5kLXBsdXMiPjxwYXRoIGQ9Ik0yIDIxYTggOCAwIDAgMSAxMy4yOTItNiIvPjxjaXJjbGUgY3g9IjEwIiBjeT0iOCIgcj0iNSIvPjxwYXRoIGQ9Ik0xOSAxNnY2Ii8+PHBhdGggZD0iTTIyIDE5aC02Ii8+PC9zdmc+" alt="Avatar" class="w-20 h-20 bg-gray-600 rounded-xl" />
+    <UploadAvatar v-model:path="avatar_url" @upload="updateProfile" size="10" />
 
     <h1>Welcome {{ user?.username }}</h1>
     <p>Here you can view your profile, check out your latest trades, update your wishlist or show off your collection! Use the sidebar to navigate through your profile.</p>

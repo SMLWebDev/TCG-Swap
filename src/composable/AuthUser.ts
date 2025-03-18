@@ -79,12 +79,12 @@ export function useAuth() {
     }
 
 
-    const updateProfile = async (name: string, avatar_url: string) => {
+    const updateProfile = async (avatar_url: string) => {
         if (!user.value) return { error: 'User not found!' }
 
         const { error } = await supabase
             .from('profiles')
-            .update({ name, avatar_url: avatar_url })
+            .update({ avatar_url: avatar_url })
             .eq('id', user.value.id)
 
         if (error) {
