@@ -6,6 +6,7 @@ const user = ref<{
     email: string,
     name: string,
     username: string,
+    avatar_url?: string,
     wishlist: string[],
     collection: string[],
     trades: string[],
@@ -18,8 +19,6 @@ export function useAuth() {
             .from('profiles')
             .select('*')
 
-        console.log(profiles)
-
         if (error || !profiles?.[0]) {
             user.value = null
             return null
@@ -30,6 +29,7 @@ export function useAuth() {
             email: profiles?.[0].email || '',
             name: profiles?.[0].name || '',
             username: profiles?.[0].username || '',
+            avatar_url: profiles?.[0].avatar_url || '',
             wishlist: profiles?.[0].wishlist || ['No data'],
             collection: profiles?.[0].collection || ['No data'],
             trades: profiles?.[0].trades || ['No data'],
@@ -79,20 +79,43 @@ export function useAuth() {
     }
 
 
-    const updateProfile = async (avatar_url: string) => {
-        if (!user.value) return { error: 'User not found!' }
+    const uploadAvatar = async (file: File) => {
+        if (!user.value) return { error: 'User not authenticated' }
 
-        const { error } = await supabase
-            .from('profiles')
-            .update({ avatar_url: avatar_url })
-            .eq('id', user.value.id)
+        const filePath = `avatars/${user.value.id}/${file.name}`
+
+        const { error } = await supabase.storage
+            .from('avatars')
+            .upload(filePath, file, { upsert: true })
 
         if (error) {
-            console.error('Failed to update user', error.message)
+            console.error('Avatar upload failed', error.message)
             return { error: error.message }
         }
 
-        return { success: true }
+        const { data } = supabase.storage
+            .from('avatars')
+            .getPublicUrl(filePath)
+
+        if (!data.publicUrl) {
+            return { error: 'Failed to retrieve public URL' }
+        }
+
+        const { error: updateError } = await supabase
+            .from('profiles')
+            .update({ avatar_url: data.publicUrl })
+            .eq('id', user.value.id)
+
+        if (updateError) {
+            return { error: updateError.message }
+        }
+
+        user.value.avatar_url = data.publicUrl
+        return { url: data.publicUrl }
+    }
+
+    const updateProfile = async () => {
+
     }
 
     return {
@@ -101,6 +124,7 @@ export function useAuth() {
         register,
         login,
         logout,
+        uploadAvatar,
         updateProfile,
     }
 }
