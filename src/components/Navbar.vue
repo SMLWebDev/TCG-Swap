@@ -34,7 +34,6 @@
       </RouterLink>
 
       <!-- Mobile Navigation -->
-
       <div class="flex md:hidden">
         <Sheet v-model:open="isOpen">
           <SheetTrigger @click="isOpen"><Menu :size="32" /></SheetTrigger>
@@ -65,7 +64,6 @@
         </NavigationMenuList>
       </NavigationMenu>
     </div>
-
   </header>
 </template>
 

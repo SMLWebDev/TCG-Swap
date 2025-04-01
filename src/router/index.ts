@@ -1,8 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import { supabase } from '@/composable/Supabase'
 import * as path from "node:path";
-// import useAuthUser from "@/composable/AuthUser.ts";
+import { useAuthStore } from "@/stores/auth.ts";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -49,14 +48,24 @@ const router = createRouter({
       path: '/yugioh',
       name: 'yugiohView',
       component: () => import('@/views/YuGiOhView.vue'),
+    },
+    {
+      path: '/forgotten-password',
+      name: 'forgottenPassword',
+      component: () => import('@/views/ForgottenPassword.vue'),
+    },
+    {
+      path: '/profile/update-password',
+      name: 'updatePassword',
+      component: () => import('@/views/NewPasswordReset.vue'),
     }
   ],
 })
 
 router.beforeEach(async(to, from, next) => {
-  const { data: { user } } = await supabase.auth.getUser()
+  const authStore = useAuthStore()
 
-  if (to.meta.requiresAuth && !user) {
+  if (to.meta.requiresAuth && !authStore.isLoggedIn) {
     next('/login')
   } else {
     next()

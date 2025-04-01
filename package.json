@@ -17,6 +17,8 @@
     "shadcn:component": "bun x --bun shadcn-vue@latest add"
   },
   "dependencies": {
+    "@formkit/icons": "^1.6.9",
+    "@formkit/vue": "^1.6.9",
     "@supabase/supabase-js": "^2.49.1",
     "@vee-validate/zod": "^4.15.0",
     "@vueuse/core": "^12.8.2",
@@ -26,6 +28,7 @@
     "lucide-vue-next": "^0.477.0",
     "normalize.css": "^8.0.1",
     "pinia": "^3.0.1",
+    "pinia-plugin-persistedstate": "^4.2.0",
     "reka-ui": "^2.0.2",
     "supabase": "^2.15.8",
     "tailwind-merge": "^3.0.2",

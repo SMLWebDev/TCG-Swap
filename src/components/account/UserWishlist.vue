@@ -1,20 +1,15 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
-import { useAuth } from '@/composable/AuthUser.ts'
+import { useAuthStore } from '@/stores/auth.ts'
 
-const { user, fetchUser } = useAuth()
-
-onMounted(async () => {
-  await fetchUser()
-})
+const authStore = useAuthStore()
 </script>
 
 <template>
   <div class="profile__details">
-    <h1>{{ user?.username }}'s Wishlist</h1>
+    <h1>{{ authStore.user?.username }}'s Wishlist</h1>
 
     <div class="trades">
-      {{ user?.wishlist }}
+      {{ authStore.user?.wishlist }}
     </div>
   </div>
 </template>

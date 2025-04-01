@@ -1,8 +1,8 @@
 <script setup lang="ts">
   import { ref } from 'vue'
-  import { useAuth } from '@/composable/AuthUser.ts'
 
-  const { uploadAvatar } = useAuth()
+
+
   const avatarPreview = ref('')
   const avatarFile = ref<File | null>(null)
   const message = ref('')

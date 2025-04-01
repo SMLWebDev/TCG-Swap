@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import LoginForm from "@/components/LoginForm.vue";
+  import ForgottenPassword from '@/components/ForgottenPasswordForm.vue'
 </script>
 
 <template>
   <div class="container mx-auto flex">
-    <LoginForm />
+    <ForgottenPassword />
   </div>
 </template>
 

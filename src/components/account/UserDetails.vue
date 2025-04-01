@@ -1,42 +1,45 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
-import { useAuth } from "@/composable/AuthUser.ts";
-import Button from "@/components/ui/button/Button.vue";
+// import { ref, onMounted } from 'vue'
+import { useAuthStore } from '@/stores/auth.ts'
+
+const authStore = useAuthStore()
+
 import UploadAvatar from "@/components/account/UploadAvatar.vue";
+import Logout from '@/components/Logout.vue'
 
-const { user, fetchUser, logout, updateProfile } = useAuth()
-const message = ref('')
-const avatarUrl = ref('')
+// const { user, fetchUser, updateProfile } = useAuth()
+// const message = ref('')
+// const avatarUrl = ref('')
+//
+// onMounted(async () => {
+//   await fetchUser()
+//   avatarUrl.value = user.value?.avatar_url || ''
+// })
 
-onMounted(async () => {
-  await fetchUser()
-  avatarUrl.value = user.value?.avatar_url || ''
-})
-
-const handleAvatarUpdate = (newAvatarUrl: string) => {
-  avatarUrl.value = newAvatarUrl
-}
+// const handleAvatarUpdate = (newAvatarUrl: string) => {
+//   avatarUrl.value = newAvatarUrl
+// }
 </script>
 
 <template>
-  <div class="profile__details">
-    <img  :src="user?.avatar_url" alt="User Avatar" width="100" />
+  <div v-if="authStore.user" class="profile__details">
+    <img  :src="authStore.user.avatar_url" alt="User Avatar" width="100" />
 
-    <h1>Welcome {{ user?.username }}</h1>
+    <h1>Welcome {{ authStore.user.name }}</h1>
     <p>Here you can view your profile, check out your latest trades, update your wishlist or show off your collection! Use the sidebar to navigate through your profile.</p>
 
     <p>Checkout your latest trades:</p>
     <div class="latest-trades">
-      <p>{{ user?.trades }}</p>
+      <p>{{ authStore.user.trades }}</p>
     </div>
 
     <div class="flex flex-row justify-between">
-      <Button variant="ghost" class="w-fit justify-start underline" @click="logout">Logout</Button>
+      <Logout />
       <UploadAvatar @avatarUploaded="handleAvatarUpdate" />
     </div>
-
-    <p v-if="message">{{ message }}</p>
   </div>
+
+  <p v-else>Loading user data...</p>
 </template>
 
 <style scoped>

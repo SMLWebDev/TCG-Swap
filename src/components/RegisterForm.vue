@@ -1,8 +1,8 @@
 <script setup lang="ts">
   import { ref } from 'vue'
-  import { useAuth } from '@/composable/AuthUser.ts'
+  import { useAuthStore } from '@/stores/auth.ts'
 
-  const { register } = useAuth()
+  const authStore = useAuthStore()
   const name = ref('')
   const username = ref('')
   const email = ref('')
@@ -10,38 +10,99 @@
   const errorMessage = ref('')
 
   const handleRegister = async () => {
-    const { error } = await register(
-        name.value,
-        username.value,
-        email.value,
-        password.value,
-    )
-
-    if (error) {
-      errorMessage.value = error
-    } else {
+    try {
+      await authStore.register(name.value, username.value, email.value, password.value)
       window.location.href = '/profile'
+    } catch (error: any) {
+      errorMessage.value = error.message
     }
   }
 </script>
 
 <template>
-  <div class="flex flex-col">
-    <h1>Register</h1>
-    <label for="name">Name</label>
-    <input v-model="name" type="email" placeholder="Enter name" required />
+  <div class="form-container">
 
-    <label for="username">Username</label>
-    <input v-model="username" type="email" placeholder="Enter username" required />
+    <FormKit
+        type="form"
+        @submit="handleRegister"
+        submit-label="Register"
+        :submit-attrs="{
+          outerClass: 'w-full mx-auto',
+          inputClass: 'uppercase',
+          suffixIcon: 'submit'
+        }"
+    >
 
-    <label for="email">Email</label>
-    <input v-model="email" type="email" placeholder="Enter email" required />
+      <h1 class="text-3xl font-bold uppercase underline text-center tracking-widest">Register</h1>
 
-    <label for="password">Password</label>
-    <input v-model="password" type="password" placeholder="Enter password" required />
-
-    <button @click="handleRegister">Register</button>
+      <div class="form-inputs flex flex-col items-center">
+        <FormKit
+          v-model="name"
+          type="text"
+          name="name"
+          label="Your Name"
+          outer-class="w-full"
+          />
+        <FormKit
+          v-model="username"
+          type="text"
+          name="username"
+          label="Username"
+          validation="required|min:3"
+          :validation-messages="{
+            min: 'Please enter a username with 3 or more characters',
+          }"
+          validation-visibility="live"
+          outer-class="w-full"
+          />
+        <FormKit
+          v-model="email"
+          type="email"
+          name="email"
+          label="Email"
+          validation="required|email"
+          outer-class="w-full"
+          />
+        <FormKit
+          v-model="password"
+          type="password"
+          name="password"
+          value="super-secret"
+          label="Password"
+          help="Enter a password"
+          validation="required|min:8"
+          validation-visibility="live"
+          outer-class="w-full"
+          />
+        <FormKit
+          type="password"
+          name="password_confirm"
+          label="Confirm Password"
+          help="Confirm your password"
+          validation="required|confirm"
+          validation-visibility="live"
+          validation-label="Password confirmation"
+          outer-class="w-full"
+          />
+      </div>
+    </FormKit>
 
     <p v-if="errorMessage">{{ errorMessage }}</p>
+
+<!--    <label for="name">Name</label>-->
+<!--    <input v-model="name" type="email" placeholder="Enter name" required />-->
+
+<!--    <label for="username">Username</label>-->
+<!--    <input v-model="username" type="email" placeholder="Enter username" required />-->
+
+<!--    <label for="email">Email</label>-->
+<!--    <input v-model="email" type="email" placeholder="Enter email" required />-->
+
+<!--    <label for="password">Password</label>-->
+<!--    <input v-model="password" type="password" placeholder="Enter password" required />-->
+
+<!--    <button @click="handleRegister">Register</button>-->
+
+<!--    <p v-if="errorMessage">{{ errorMessage }}</p>-->
   </div>
 </template>
