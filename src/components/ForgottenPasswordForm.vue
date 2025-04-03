@@ -4,12 +4,13 @@ import { useAuthStore } from '@/stores/auth.ts'
 
 const authStore = useAuthStore()
 const email = ref('')
+const message = ref('')
 
 const handlePasswordReset = async () => {
-  const { error } = await authStore.forgotPassword(email.value)
-
-  if (error) throw error
+  const response = await authStore.forgotPassword(email.value)
+  message.value = response.message
 }
+
 </script>
 
 <template>
@@ -37,6 +38,7 @@ const handlePasswordReset = async () => {
             />
         </div>
       </FormKit>
+    <p v-if="message">{{ message }}</p>
   </div>
 </template>
 

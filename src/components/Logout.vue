@@ -7,5 +7,5 @@ import Button from "./ui/button/Button.vue";
 </script>
 
 <template>
-  <Button variant="ghost" class="w-fit justify-start underline" @click="authStore.logout()">Logout</Button>
+  <Button variant="ghost" class="w-fit justify-start underline" @click="authStore.logout">Logout</Button>
 </template>

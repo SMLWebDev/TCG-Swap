@@ -48,11 +48,10 @@
           type="text"
           name="username"
           label="Username"
-          validation="required|min:3"
+          validation="required"
           :validation-messages="{
             min: 'Please enter a username with 3 or more characters',
           }"
-          validation-visibility="live"
           outer-class="w-full"
           />
         <FormKit
@@ -70,8 +69,7 @@
           value="super-secret"
           label="Password"
           help="Enter a password"
-          validation="required|min:8"
-          validation-visibility="live"
+          validation="required"
           outer-class="w-full"
           />
         <FormKit
@@ -80,7 +78,6 @@
           label="Confirm Password"
           help="Confirm your password"
           validation="required|confirm"
-          validation-visibility="live"
           validation-label="Password confirmation"
           outer-class="w-full"
           />

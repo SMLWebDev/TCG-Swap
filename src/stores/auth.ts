@@ -18,15 +18,18 @@ export const useAuthStore = defineStore('auth', () => {
     const loading = ref(null)
     const error = ref(null)
 
-    supabase.auth.onAuthStateChange(async (_, session) => {
-        console.log('Auth state changed:', session)
 
-        if (session?.user) {
-            await fetchUser()
-        } else {
-            user.value = null
-        }
-    })
+        supabase.auth.onAuthStateChange(async (event, session) => {
+
+            if (event === 'SIGNED_IN') {
+                // user.value = session?.user || null
+            }
+
+            if (event === 'SIGNED_OUT') {
+                window.location.href = '/login'
+                user.value = null
+            }
+        })
 
     const fetchUser = async () => {
         const { data: authUser, error: authError } = await supabase.auth.getUser()
@@ -70,6 +73,10 @@ export const useAuthStore = defineStore('auth', () => {
             password,
         })
 
+        if (!user) {
+            alert('No user found.')
+        }
+
         if (error) {
             console.error('failed to login: ', error.message)
             return {error: error.message}
@@ -95,27 +102,41 @@ export const useAuthStore = defineStore('auth', () => {
             return {error: error.message}
         } else {
             alert('Registration successful!')
+            window.location.href = '/profile'
         }
         await fetchUser()
     }
 
     const logout = async () => {
         await supabase.auth.signOut()
-        user.value = null
-        window.location.href = '/'
     }
 
     const updatePassword = async (newPassword: string) => {
-        const { error } = await supabase.auth.updateUser({
-            password: newPassword
-        })
-        if (error) throw error
+        try {
+            const { error } = await supabase.auth.updateUser({
+                password: newPassword,
+            })
+
+            if (error) throw error
+            return { success: true, message: 'Password updated successfully!' }
+        } catch (err: any) {
+            console.error('Update password error: ', err.message)
+            return { success: false, message: err.message }
+        }
     }
 
     const forgotPassword = async (email: string) => {
-        const { error } = await supabase.auth.resetPasswordForEmail(email)
+        try {
+            const { error } = await supabase.auth.resetPasswordForEmail(email, {
+                redirectTo: `${window.location.origin}/profile/update-password`,
+            })
+            if (error) throw error
+            return { success: true, message: 'Password reset email sent!' }
+        } catch (err: any) {
+            console.error('Password reset error: ', err.message)
+            return { success: false, message: err.message }
+        }
 
-        if (error) throw error
     }
 
     const isLoggedIn = computed(() => !!user.value)

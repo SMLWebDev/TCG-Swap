@@ -4,7 +4,7 @@ import { useAuthStore } from '@/stores/auth.ts'
 
 const authStore = useAuthStore()
 
-import UploadAvatar from "@/components/account/UploadAvatar.vue";
+// import UploadAvatar from "@/components/account/UploadAvatar.vue";
 import Logout from '@/components/Logout.vue'
 
 // const { user, fetchUser, updateProfile } = useAuth()
@@ -35,7 +35,7 @@ import Logout from '@/components/Logout.vue'
 
     <div class="flex flex-row justify-between">
       <Logout />
-      <UploadAvatar @avatarUploaded="handleAvatarUpdate" />
+<!--      <UploadAvatar @avatarUploaded="handleAvatarUpdate" />-->
     </div>
   </div>
 

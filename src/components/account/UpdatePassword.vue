@@ -1,31 +1,26 @@
 <script setup lang="ts">
-  import { ref } from 'vue'
-  import { useAuthStore } from '@/stores/auth.ts'
+import { ref, onMounted } from 'vue'
+import { useAuthStore } from "@/stores/auth.ts"
 
-  const authStore = useAuthStore()
+const authStore = useAuthStore()
+const newPassword = ref("")
+const message = ref('')
 
-  const password = ref('')
-  const message = ref('')
-  const { updatePassword } = useAuth()
+const handleUpdatePassword = async () => {
+  const response = await authStore.updatePassword(newPassword.value)
+  message.value = response.message
 
-  console.log('useAuth() output: ', updatePassword)
-
-  const handleUpdatePassword = async () => {
-    if (!password.value) {
-      message.value = 'Please enter a new password'
-      return
-    }
-
-    if (password.value.length < 6) {
-      message.value = 'Password must be at least 6 characters long'
-      return
-    }
-
-    const result = await authStore.updatePassword(password.value)
-    if (result?.error) {
-      message.value = result.error
-    }
+  if (response.success) {
+    setTimeout(() => (window.location.href = '/login'), 2000)
   }
+}
+
+onMounted(() => {
+  const { user } = authStore
+  if (!user) {
+    message.value = 'Session expired or invalid. Please try resetting again.'
+  }
+})
 </script>
 
 <template>
@@ -45,7 +40,7 @@
       <div class="form-inputs flex flex-col items-center">
         <h1 class="text-3xl font-bold uppercase underline text-center tracking-widest">Update Password</h1>
         <FormKit
-            v-model="password"
+            v-model="newPassword"
             type="password"
             label="Please enter your new password"
             placeholder="Password"
