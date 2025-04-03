@@ -1,9 +1,9 @@
-<script setup>
+<script setup lang="ts">
 
 </script>
 
 <template>
-  <h1>My Account</h1>
+  <h1>Coming Soon!</h1>
 </template>
 
 <style scoped>

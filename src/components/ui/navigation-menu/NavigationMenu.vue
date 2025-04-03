@@ -1,5 +1,5 @@
-<script setup>
-import { cn } from '@/lib/utils';
+<script setup lang="ts">
+import { cn } from '@/lib/utils.js';
 import { NavigationMenuRoot, useForwardPropsEmits } from 'reka-ui';
 import { computed } from 'vue';
 import NavigationMenuViewport from './NavigationMenuViewport.vue';

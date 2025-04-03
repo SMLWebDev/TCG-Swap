@@ -1,8 +1,11 @@
-<script setup>
+<script setup lang="ts">
+import LoginForm from "@/components/LoginForm.vue";
 </script>
 
 <template>
-  <h1>Login</h1>
+  <div class="container mx-auto flex">
+    <LoginForm />
+  </div>
 </template>
 
 <style scoped>

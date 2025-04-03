@@ -1,5 +1,5 @@
-<script setup>
-import { cn } from '@/lib/utils';
+<script setup lang="ts">
+import { cn } from '@/lib/utils.js';
 import { NavigationMenuIndicator, useForwardProps } from 'reka-ui';
 import { computed } from 'vue';
 

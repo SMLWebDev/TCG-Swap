@@ -1,22 +1,22 @@
-<script setup>
+<script setup lang="ts">
 
 </script>
 
 <template>
   <div class="flex flex-row flex-wrap justify-between items-center container mx-auto">
-    <RouterLink to="/trader">
+    <RouterLink to="/pokemon">
       <div class="logo-container">
-        <img src="https://ttbtdmddwvcodsdbpezm.supabase.co/storage/v1/object/sign/images/pokemon-logo.webp?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZXMvcG9rZW1vbi1sb2dvLndlYnAiLCJpYXQiOjE3NDExODEzNDgsImV4cCI6MjA1NjU0MTM0OH0.JYustKGU5zi9WXm7PQrB5kcgI--YB1YuvdEUX-KQL4w" alt="Pokemon Logo">
+        <img src="https://res.cloudinary.com/sml-web-dev/image/upload/v1740752890/pokemon-logo_g4lmnv.webp" alt="Pokemon Logo">
       </div>
     </RouterLink>
-    <RouterLink to="/trader">
+    <RouterLink to="/mtg">
       <div class="logo-container">
-        <img src="https://ttbtdmddwvcodsdbpezm.supabase.co/storage/v1/object/sign/images/magic-the-gathering-logo.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZXMvbWFnaWMtdGhlLWdhdGhlcmluZy1sb2dvLnBuZyIsImlhdCI6MTc0MTE4MTM4OCwiZXhwIjoyMDU2NTQxMzg4fQ.Lsxz7YFN5DWepHxq42HGy5g-pq8uF_CIB9YybWWBJpU" alt="MTG Logo">
+        <img src="https://res.cloudinary.com/sml-web-dev/image/upload/v1741698940/magic-the-gathering-logo_zhsyfx.png" alt="MTG Logo">
       </div>
     </RouterLink>
-    <RouterLink to="/trader">
+    <RouterLink to="/yugioh">
       <div class="logo-container">
-        <img src="https://ttbtdmddwvcodsdbpezm.supabase.co/storage/v1/object/sign/images/yu-gi-oh-logo.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZXMveXUtZ2ktb2gtbG9nby5wbmciLCJpYXQiOjE3NDExODE0MDYsImV4cCI6MjA1NjU0MTQwNn0.ME8hHBvCK0JIsN_ockkSHeyvTCYv0ohjjwOiQKBhjDg" alt="Yu-Gi-Oh Logo">
+        <img src="https://res.cloudinary.com/sml-web-dev/image/upload/v1741698940/yu-gi-oh-logo_ozifvj.png" alt="Yu-Gi-Oh Logo">
       </div>
     </RouterLink>
   </div>

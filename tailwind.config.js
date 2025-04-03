@@ -1,7 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
     darkMode: ['class'],
-    content: ['./index.html', './src/**/*.{ts,js,vue}'],
+    content: [
+		'./index.html',
+		'./src/**/*.{ts,js,vue}',
+		'./formkit.theme.ts',
+	],
   theme: {
   	extend: {
   		borderRadius: {
@@ -9,6 +13,9 @@ module.exports = {
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
   		},
+		boxShadow: {
+			'inputShadow': '0 0 50px 15px #48abe0',
+		},
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
