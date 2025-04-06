@@ -40,6 +40,11 @@ const router = createRouter({
       component: () => import('@/views/PokemonView.vue'),
     },
     {
+      path: '/pokemon/:id',
+      name: 'card-detail',
+      component: () => import('@/views/PokemonDetail.vue'),
+    },
+    {
       path: '/mtg',
       name: 'mtgView',
       component: () => import('@/views/MTGView.vue'),
@@ -58,7 +63,7 @@ const router = createRouter({
       path: '/profile/update-password',
       name: 'updatePassword',
       component: () => import('@/views/NewPasswordReset.vue'),
-    }
+    },
   ],
 })
 
