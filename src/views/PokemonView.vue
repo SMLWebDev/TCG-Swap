@@ -89,7 +89,7 @@
       </Pagination>
     </div>
 
-    <div class="cards flex flex-row flex-wrap justify-between gap-5">
+    <div class="cards flex flex-row flex-wrap justify-between gap-5 cursor-pointer">
       <div
           v-for="card in cards"
           :key="card.id"
